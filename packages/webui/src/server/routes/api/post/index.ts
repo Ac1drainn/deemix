@@ -7,6 +7,8 @@ import removeFromQueue from "./removeFromQueue.js";
 import logout from "./logout.js";
 import saveSettings from "./saveSettings.js";
 import retryDownload from "./retryDownload.js";
+import loginYTMusic from "./loginYTMusic.js";
+import logoutYTMusic from "./logoutYTMusic.js";
 
 export default [
 	changeAccount,
@@ -18,4 +20,6 @@ export default [
 	logout,
 	saveSettings,
 	retryDownload,
+	loginYTMusic,
+	logoutYTMusic,
 ];

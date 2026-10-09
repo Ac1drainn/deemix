@@ -12,6 +12,7 @@ import {
 	Single,
 	SpotifyPlugin,
 	utils,
+	YTMusicPlugin,
 	type DownloadObject,
 	type Listener,
 	type Settings,
@@ -40,7 +41,10 @@ export class DeemixApp {
 	deezerAvailable?: DeezerAvailable;
 	latestVersion: string | null;
 
-	plugins: Record<string, SpotifyPlugin>;
+	plugins: {
+		spotify: SpotifyPlugin;
+		ytmusic: YTMusicPlugin;
+	};
 	settings: Settings;
 
 	listener: Listener;
@@ -54,11 +58,13 @@ export class DeemixApp {
 
 		this.plugins = {
 			spotify: new SpotifyPlugin(),
+			ytmusic: new YTMusicPlugin(),
 		};
 		this.latestVersion = null;
 		this.listener = listener;
 
 		this.plugins.spotify.setup();
+		this.plugins.ytmusic.setup();
 		this.restoreQueueFromDisk();
 	}
 
@@ -310,12 +316,9 @@ export class DeemixApp {
 					break;
 				case "Convertable": {
 					const convertable = new Convertable(currentItem);
-					downloadObject = await this.plugins[convertable.plugin].convert(
-						dz,
-						convertable,
-						this.settings,
-						this.listener
-					);
+					downloadObject = await this.plugins[
+						convertable.plugin as keyof typeof this.plugins
+					].convert(dz, convertable, this.settings, this.listener);
 					fs.writeFileSync(
 						configFolder + `queue${sep}${downloadObject.uuid}.json`,
 						JSON.stringify({ ...downloadObject.toDict(), status: "inQueue" })

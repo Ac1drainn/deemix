@@ -131,6 +131,14 @@ const generateLink = computed(() => {
 			return `https://deezer.com/playlist/${queueItem.id}`;
 		case "spotify_playlist":
 			return `https://open.spotify.com/playlist/${queueItem.id}`;
+		case "ytmusic_playlist":
+			if (queueItem.id.startsWith("quickpicks"))
+				return "https://music.youtube.com/";
+			if (queueItem.id === "library_songs")
+				return "https://music.youtube.com/library/songs";
+			if (queueItem.id.startsWith("MPREb"))
+				return `https://music.youtube.com/browse/${queueItem.id}`;
+			return `https://music.youtube.com/playlist?list=${queueItem.id}`;
 		default:
 			return "";
 	}

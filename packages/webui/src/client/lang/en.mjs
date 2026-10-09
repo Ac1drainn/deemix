@@ -421,6 +421,31 @@ const en = {
 				description: "Leave blank for no action",
 			},
 		},
+		ytmusic: {
+			title: "YouTube Music",
+			description:
+				"Log in with your YouTube Music account to download your Quick picks, library songs, playlists and albums. Tracks are matched to Deezer by title, artist and album, then downloaded from Deezer.",
+			cookie: "YouTube Music cookie",
+			cookieSteps: {
+				step1:
+					"Open music.youtube.com in your browser and make sure you are logged in",
+				step2:
+					'Open the developer tools (F12), go to the Network tab and click any request to music.youtube.com (e.g. "browse")',
+				step3:
+					'Under Request Headers, copy the whole value of "Cookie" and paste it below',
+			},
+			login: "Log in",
+			loggedIn: "Logged in to YouTube Music as {name}",
+			loginFailed: "YouTube Music login failed: {error}",
+			libraryFailed: "Couldn't load your YouTube Music library",
+			loadLibrary: "Load library",
+			quickPicks: "Quick picks",
+			librarySongs: "Library songs",
+			playlists: "Playlists",
+			albums: "Albums",
+			downloadAll: "Download all",
+			empty: "Nothing here",
+		},
 		spotify: {
 			title: "Spotify Features",
 			clientID: "Spotify ClientID",
