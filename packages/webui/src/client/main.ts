@@ -115,8 +115,9 @@ if (window.api) {
 /* ===== Global shortcuts ===== */
 
 document.addEventListener("paste", (pasteEvent: ClipboardEvent) => {
+	// Let editable fields handle their own paste
 	const target = pasteEvent.target as HTMLElement;
-	if (target?.tagName.toLowerCase() === "input") return;
+	if (target?.closest("input, textarea, select, [contenteditable]")) return;
 
 	let pastedText = pasteEvent.clipboardData?.getData("Text");
 
